@@ -40,14 +40,6 @@ class EmpresaNuevaForm(forms.Form):
         required=False
         )
     movil=forms.CharField( required=False)
-    cliente=forms.BooleanField(
-        label='¿Es cliente?', 
-        required=False
-        )
-    proveedor=forms.BooleanField(
-        label='¿Es proveedor?', 
-        required=False
-        )
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -132,3 +124,55 @@ class ContactoForm(forms.ModelForm):
                 Submit('submit', 'Guardar'),
             )
         )
+
+class EmpresaForm(forms.ModelForm):
+    """Form definition for Empresa."""
+
+    class Meta:
+        """Meta definition for Empresaform."""
+
+        model = Empresa
+        fields = ('denominacion',
+        'n_comercial',
+        'calle',
+        'calle2',
+        'ciudad',
+        'provincia',
+        'cp',
+        'pais',
+        'nif',
+        'email',
+        'tfno',
+        'movil',)
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.layout = Layout(
+            Row(
+                Column('denominacion', css_class='form-group col-md-6 mb-0'),
+                Column('n_comercial', css_class='form-group col-md-6 mb-0'),
+                css_class='form-row'
+            ),
+            'calle',
+            'calle2',
+            Row(
+                Column('ciudad', css_class='form-group col-md-4 mb-0'),
+                Column('provincia', css_class='form-group col-md-4 mb-0'),
+                Column('cp', css_class='form-group col-md-2 mb-0'),
+                Column('pais', css_class='form-group col-md-2 mb-0'),
+                css_class='form-row'
+            ),
+            Row(
+                Column('nif', css_class='form-group col-md-2 mb-0'),
+                Column('email', css_class='form-group col-md-4 mb-0'),
+                Column('tfno', css_class='form-group col-md-2 mb-0'),
+                Column('movil', css_class='form-group col-md-2 mb-0'),
+                css_class='form-row'
+            ),
+            FormActions(
+                Submit('submit', 'Guardar'),
+                Reset('Reset This Form', 'Deshacer', css_class="btn-primary"),
+            )
+        )
+

@@ -18,12 +18,13 @@
         <tbody>
         {% for empresa in object_list %}
           <tr>
-            <th scope="row"><a>{{ empresa.denominacion }}</a></th>
+            <th scope="row"><a class="link-primary" href="{% url 'contactos:editar_empresa' empresa.id %}">{{ empresa.denominacion }}</a></th>
             <td>{{ empresa.n_comercial }}</td>
             <td>{{ empresa.nif }}</td>
             <td>{{ empresa.tfno }}</td>
             <td>        
-
+              <a class="btn btn-danger btn-sm" href="{% url 'contactos:eliminar_empresa' empresa.id %}">Eliminar</a>
+              <a class="btn btn-primary btn-sm" href="{% url 'contactos:editar_empresa' empresa.id %}">Editar</a>
             </td>
           </tr>
         {% endfor %}
