@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+<h3>Nuevo Contacto</h3>
+
+ 
+<form class="form.group" method="POST" action="." enctype="multipart/form-data">
+  <form method="post">
+  {% csrf_token %}
+
+    {% crispy form %}
+    <a class="btn btn-primary btn-sm" href="{% url 'contactos:nueva_empresa' %}">Nueva empresa</a>
+
+</form>
+
+{% endblock %}
